@@ -27,10 +27,14 @@ export default class Order {
       throw new Error("Items are required");
     }
 
+    if (this._items.some((item) => item.quantity <= 0)) {
+      throw new Error("Quantity must be greater than 0");
+    }
+
     return true;
   }
 
   total(): number {
-    return this._items.reduce((acc, item) => acc + item.price, 0);
+    return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
   }
 }
