@@ -67,4 +67,25 @@ describe("Order Repository tests", () => {
       ],
     });
   });
+
+  it("should find an order", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new Customer("123", "Customer 1");
+    const address = new Address("Street 1", 1, "Zipcode 1", "City 1");
+    customer.changeAddress(address);
+    await customerRepository.create(customer);
+
+    const productRepository = new ProductRepository();
+    const product = new Product("123", "Product 1", 10);
+    await productRepository.create(product);
+
+    const orderRepository = new OrderRepository();
+    const orderItem = new OrderItem("1", product.name, product.price, product.id, 2);
+    const order = new Order("123", "123", [orderItem]);
+    await orderRepository.create(order);
+
+    const orderResult = await orderRepository.find(order.id);
+
+    expect(order).toStrictEqual(orderResult);
+  });
 });
