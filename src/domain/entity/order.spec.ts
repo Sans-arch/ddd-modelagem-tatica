@@ -20,6 +20,24 @@ describe("Order test suite", () => {
     }).toThrow("Items are required");
   });
 
+  it("should change items", () => {
+    const item1 = new OrderItem("1", "Item 1", 100, "p1", 2);
+    const item2 = new OrderItem("2", "Item 2", 200, "p2", 7);
+    const order = new Order("o1", "c1", [item1]);
+
+    expect(order.items).toHaveLength(1);
+    expect(order.items).toContainEqual(item1);
+    expect(order.items).not.toContainEqual(item2);
+    expect(order.total()).toBe(200);
+
+    order.changeItems([item1, item2]);
+
+    expect(order.items).toHaveLength(2);
+    expect(order.items).toContainEqual(item1);
+    expect(order.items).toContainEqual(item2);
+    expect(order.total()).toBe(1600);
+  });
+
   it("should calculate total", () => {
     const item = new OrderItem("1", "Item 1", 100, "p1", 2);
     const item2 = new OrderItem("2", "Item 2", 200, "p2", 2);
