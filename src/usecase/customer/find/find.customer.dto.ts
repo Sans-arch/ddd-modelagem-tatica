@@ -5,8 +5,6 @@ export interface InputFindCustomerDto {
 export interface OutputFindCustomerDto {
   id: string;
   name: string;
-  email: string;
-  phone: string;
   address: {
     street: string;
     city: string;
