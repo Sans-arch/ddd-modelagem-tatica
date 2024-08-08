@@ -2,7 +2,6 @@ import { InputFindCustomerDto, OutputFindCustomerDto } from "./find.customer.dto
 import Customer from "../../../domain/customer/entity/customer";
 import Address from "../../../domain/customer/value-object/address";
 import FindCustomerUseCase from "./find.customer.usecase";
-import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository.interface";
 
 const customer = new Customer("123", "John");
 const address = new Address("Street", 123, "Zip", "city");
@@ -40,5 +39,21 @@ describe("Test find customer use case", () => {
     const result = await usecase.execute(input);
 
     expect(result).toEqual(output);
+  });
+
+  it("should not find a customer", async () => {
+    const customerRepository = MockRepository();
+    customerRepository.find.mockImplementation(() => {
+      throw new Error("Customer not found");
+    });
+    const usecase = new FindCustomerUseCase(customerRepository);
+
+    const input: InputFindCustomerDto = {
+      id: "123",
+    };
+
+    expect(() => {
+      return usecase.execute(input);
+    }).rejects.toThrow("Customer not found");
   });
 });
