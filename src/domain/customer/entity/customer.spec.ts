@@ -5,13 +5,19 @@ describe("Customer test suite", () => {
   it("should throw error when id is empty", () => {
     expect(() => {
       new Customer("", "John Doe");
-    }).toThrow("Id is required");
+    }).toThrow("customer: Id is required");
   });
 
   it("should throw error when name is empty", () => {
     expect(() => {
       new Customer("123", "");
-    }).toThrow("Name is required");
+    }).toThrow("customer: Name is required");
+  });
+
+  it("should throw error when name and id are empty", () => {
+    expect(() => {
+      new Customer("", "");
+    }).toThrow("customer: Id is required,customer: Name is required");
   });
 
   it("should change name", () => {
