@@ -11,3 +11,4 @@ Conceitos abordados e aplicados:
 - Criação de API Rest
 - Utilização de variáveis de ambiente
 - Criação de testes E2E (End-to-End)
+- Utilização de Notification Pattern.
