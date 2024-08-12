@@ -10,3 +10,4 @@ Conceitos abordados e aplicados:
 - Aplicação de alguns design patterns como o padrão Repository, Factory e DTO.
 - Criação de API Rest
 - Utilização de variáveis de ambiente
+- Criação de testes E2E (End-to-End)
