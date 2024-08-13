@@ -12,3 +12,4 @@ Conceitos abordados e aplicados:
 - Utilização de variáveis de ambiente
 - Criação de testes E2E (End-to-End)
 - Utilização de Notification Pattern.
+- Trabalhar com diversos presenters (XML, JSON)
